@@ -1,0 +1,164 @@
+
+.selection-outline {
+  pointer-events: none;
+  position: absolute;
+  border: 1.5px solid white;
+  background-color: rgba(255, 255, 255, 0.05);
+  z-index: 10;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.selection-handle {
+  pointer-events: auto;
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 30, 30, 0.8);
+  border: 1.5px solid white;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  z-index: 11;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.selection-handle:hover {
+  background: rgba(50, 50, 50, 0.9);
+  transform: scale(1.1);
+}
+
+.selection-handle:active {
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  transform: scale(0.95);
+}
+
+.selection-handle-tr { top: -14px; right: -14px; cursor: crosshair; } /* Rotate */
+.selection-handle-br { bottom: -14px; right: -14px; cursor: nwse-resize; } /* Scale */
+.selection-handle-tl { top: -14px; left: -14px; cursor: move; } /* Skew (parallelogram) */
+.selection-handle-bl { bottom: -14px; left: -14px; cursor: move; } /* Taper (trapezoid) */
+.selection-handle-center { top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: move; } /* Move */
+
+.selection-undo-btn {
+  pointer-events: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: hsl(var(--foreground));
+}
+
+.selection-undo-btn:hover {
+  transform: scale(1.08);
+}
+
+.selection-undo-btn:active {
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  transform: scale(0.95);
+}
+
+.selection-active {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 15px hsl(var(--primary) / 0.5);
+}
+
+.spec-item-selected {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  border-color: white !important;
+}
+
+.spec-item-locked {
+  background-color: #333 !important;
+  color: #888 !important;
+  opacity: 0.6;
+}
+
+.spec-item-locked * {
+  color: #888 !important;
+  pointer-events: none;
+}
+
+.spec-item-locked .lock-toggle {
+  pointer-events: auto !important;
+  color: white !important;
+}
+
+.spec-item-hidden {
+  border: 1px solid #555;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.3);
+}
+
+/* Prevent browser default selection during drag */
+.dragging-active * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  cursor: grabbing !important;
+}
+
+/* Global UI selection prevention */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable selection for inputs and editor */
+input, textarea, [contenteditable="true"], .allow-selection {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Specific UI blocks that shouldn't trigger browser menus */
+canvas, .panel, .button, .label {
+  -webkit-touch-callout: none;
+}
+
+/* Color slider styles */
+.color-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid hsl(var(--border));
+}
+
+.color-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.color-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.color-slider:focus {
+  outline: none;
+}
+
+.color-slider:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
